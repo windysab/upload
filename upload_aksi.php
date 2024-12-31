@@ -76,6 +76,9 @@ for ($i = 2; $i <= $jumlah_baris; $i++) {
 		} else {
 			echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
 		}
+	} else {
+		// Debugging: Print a message if the row is skipped
+		echo "Row $i is skipped because 'jenis_perkara' is empty.<br>";
 	}
 }
 
