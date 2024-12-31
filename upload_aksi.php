@@ -50,8 +50,12 @@ for ($i=2; $i<=$jumlah_baris; $i++){
 
 	if($jenis_perkara != ""){
 		// input data ke database (table data_pegawai)
-		mysqli_query($koneksi,"INSERT into data_pegawai values('','$jenis_perkara','$sisa_bulan_lalu','$diterima_bulan_ini','$jumlah','$dicabut','$dikabulkan','$ditolak','$tidak_diterima','$digugurkan','$dicoret_dari_register','$jumlah_lajur_6_sampai_11','$sisa_akhir','$banding','$kasasi','$pk','$ket')");
-		$berhasil++;
+		$query = "INSERT INTO data_pegawai VALUES('', '$jenis_perkara', '$sisa_bulan_lalu', '$diterima_bulan_ini', '$jumlah', '$dicabut', '$dikabulkan', '$ditolak', '$tidak_diterima', '$digugurkan', '$dicoret_dari_register', '$jumlah_lajur_6_sampai_11', '$sisa_akhir', '$banding', '$kasasi', '$pk', '$ket')";
+		if (mysqli_query($koneksi, $query)) {
+			$berhasil++;
+		} else {
+			echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
+		}
 	}
 }
 

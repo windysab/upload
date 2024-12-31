@@ -14,7 +14,7 @@
 	}
 </style>
 <h2>IMPORT EXCEL KE MYSQL DENGAN PHP</h2>
-<h3>www.malasngoding.com</h3>
+
 
 <a href="index.php">Kembali</a>
 <br/><br/>
@@ -30,7 +30,7 @@ include 'koneksi.php';
 
 <br/><br/>
 
-<a href="https://www.malasngoding.com/import-excel-ke-mysql-dengan-php">www.malasngoding.com</a>
+
 
 </body>
 </html>
