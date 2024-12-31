@@ -24,9 +24,6 @@ if (!move_uploaded_file($_FILES['filepegawai']['tmp_name'], $target_file)) {
 	die("Sorry, there was an error uploading your file.");
 }
 
-// Debugging: Print the target file path
-echo "Target file: $target_file<br>";
-
 // beri permisi agar file xls dapat di baca
 chmod($target_file, 0777);
 
@@ -40,14 +37,9 @@ $data = new Spreadsheet_Excel_Reader($target_file, false);
 // menghitung jumlah baris data yang ada
 $jumlah_baris = $data->rowcount($sheet_index = 0);
 
-// Debugging: Print the number of rows
-echo "Number of rows: $jumlah_baris<br>";
-
 // jumlah default data yang berhasil di import
 $berhasil = 0;
 for ($i = 2; $i <= $jumlah_baris; $i++) {
-
-	// menangkap data dan memasukkan ke variabel sesuai dengan kolumnya masing-masing
 	$jenis_perkara = $data->val($i, 1);
 	$sisa_bulan_lalu = $data->val($i, 2);
 	$diterima_bulan_ini = $data->val($i, 3);
@@ -65,20 +57,13 @@ for ($i = 2; $i <= $jumlah_baris; $i++) {
 	$pk = $data->val($i, 15);
 	$ket = $data->val($i, 16);
 
-	// Debugging: Print the data to check if it is being read correctly
-	echo "Row $i: $jenis_perkara, $sisa_bulan_lalu, $diterima_bulan_ini, $jumlah, $dicabut, $dikabulkan, $ditolak, $tidak_diterima, $digugurkan, $dicoret_dari_register, $jumlah_lajur_6_sampai_11, $sisa_akhir, $banding, $kasasi, $pk, $ket<br>";
-
 	if (trim($jenis_perkara) != "") {
-		// input data ke database (table data_pegawai)
 		$query = "INSERT INTO data_pegawai (jenis_perkara, sisa_bulan_lalu, diterima_bulan_ini, jumlah, dicabut, dikabulkan, ditolak, tidak_diterima, digugurkan, dicoret_dari_register, jumlah_lajur_6_sampai_11, sisa_akhir, banding, kasasi, pk, ket) VALUES ('$jenis_perkara', '$sisa_bulan_lalu', '$diterima_bulan_ini', '$jumlah', '$dicabut', '$dikabulkan', '$ditolak', '$tidak_diterima', '$digugurkan', '$dicoret_dari_register', '$jumlah_lajur_6_sampai_11', '$sisa_akhir', '$banding', '$kasasi', '$pk', '$ket')";
 		if (mysqli_query($koneksi, $query)) {
 			$berhasil++;
 		} else {
 			echo "Error inserting row $i: " . mysqli_error($koneksi) . "<br>";
 		}
-	} else {
-		// Debugging: Print a message if the row is skipped
-		echo "Row $i is skipped because 'jenis_perkara' is empty.<br>";
 	}
 }
 
@@ -90,6 +75,6 @@ if (is_writable($target_file)) {
 }
 
 // alihkan halaman ke index.php
-header("location:index.php?berhasil=$berhasil");
+header("Location: index.php?berhasil=$berhasil");
 exit();
 ?>
