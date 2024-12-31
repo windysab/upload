@@ -74,7 +74,7 @@ for ($i = 2; $i <= $jumlah_baris; $i++) {
 		if (mysqli_query($koneksi, $query)) {
 			$berhasil++;
 		} else {
-			echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
+			echo "Error inserting row $i: " . mysqli_error($koneksi) . "<br>";
 		}
 	} else {
 		// Debugging: Print a message if the row is skipped
