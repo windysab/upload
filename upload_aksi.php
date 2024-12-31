@@ -68,7 +68,7 @@ for ($i = 2; $i <= $jumlah_baris; $i++) {
 	// Debugging: Print the data to check if it is being read correctly
 	echo "Row $i: $jenis_perkara, $sisa_bulan_lalu, $diterima_bulan_ini, $jumlah, $dicabut, $dikabulkan, $ditolak, $tidak_diterima, $digugurkan, $dicoret_dari_register, $jumlah_lajur_6_sampai_11, $sisa_akhir, $banding, $kasasi, $pk, $ket<br>";
 
-	if ($jenis_perkara != "") {
+	if (trim($jenis_perkara) != "") {
 		// input data ke database (table data_pegawai)
 		$query = "INSERT INTO data_pegawai (jenis_perkara, sisa_bulan_lalu, diterima_bulan_ini, jumlah, dicabut, dikabulkan, ditolak, tidak_diterima, digugurkan, dicoret_dari_register, jumlah_lajur_6_sampai_11, sisa_akhir, banding, kasasi, pk, ket) VALUES ('$jenis_perkara', '$sisa_bulan_lalu', '$diterima_bulan_ini', '$jumlah', '$dicabut', '$dikabulkan', '$ditolak', '$tidak_diterima', '$digugurkan', '$dicoret_dari_register', '$jumlah_lajur_6_sampai_11', '$sisa_akhir', '$banding', '$kasasi', '$pk', '$ket')";
 		if (mysqli_query($koneksi, $query)) {
