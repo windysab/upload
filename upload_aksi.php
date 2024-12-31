@@ -24,6 +24,9 @@ if (!move_uploaded_file($_FILES['filepegawai']['tmp_name'], $target_file)) {
 	die("Sorry, there was an error uploading your file.");
 }
 
+// Debugging: Print the target file path
+echo "Target file: $target_file<br>";
+
 // beri permisi agar file xls dapat di baca
 chmod($target_file, 0777);
 
@@ -36,6 +39,9 @@ if (!is_readable($target_file)) {
 $data = new Spreadsheet_Excel_Reader($target_file, false);
 // menghitung jumlah baris data yang ada
 $jumlah_baris = $data->rowcount($sheet_index = 0);
+
+// Debugging: Print the number of rows
+echo "Number of rows: $jumlah_baris<br>";
 
 // jumlah default data yang berhasil di import
 $berhasil = 0;
