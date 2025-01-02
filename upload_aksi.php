@@ -39,6 +39,8 @@ $jumlah_baris = $data->rowcount($sheet_index = 0);
 
 // jumlah default data yang berhasil di import
 $berhasil = 0;
+$stmt = $koneksi->prepare("INSERT INTO data_pegawai (jenis_perkara, sisa_bulan_lalu, diterima_bulan_ini, jumlah, dicabut, dikabulkan, ditolak, tidak_diterima, digugurkan, dicoret_dari_register, jumlah_lajur_6_sampai_11, sisa_akhir, banding, kasasi, pk, ket) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
 for ($i = 2; $i <= $jumlah_baris; $i++) {
 	$jenis_perkara = $data->val($i, 1);
 	$sisa_bulan_lalu = $data->val($i, 2);
@@ -58,11 +60,12 @@ for ($i = 2; $i <= $jumlah_baris; $i++) {
 	$ket = $data->val($i, 16);
 
 	if (trim($jenis_perkara) != "") {
-		$query = "INSERT INTO data_pegawai (jenis_perkara, sisa_bulan_lalu, diterima_bulan_ini, jumlah, dicabut, dikabulkan, ditolak, tidak_diterima, digugurkan, dicoret_dari_register, jumlah_lajur_6_sampai_11, sisa_akhir, banding, kasasi, pk, ket) VALUES ('$jenis_perkara', '$sisa_bulan_lalu', '$diterima_bulan_ini', '$jumlah', '$dicabut', '$dikabulkan', '$ditolak', '$tidak_diterima', '$digugurkan', '$dicoret_dari_register', '$jumlah_lajur_6_sampai_11', '$sisa_akhir', '$banding', '$kasasi', '$pk', '$ket')";
-		if (mysqli_query($koneksi, $query)) {
+		$stmt->bind_param("ssssssssssssssss", $jenis_perkara, $sisa_bulan_lalu, $diterima_bulan_ini, $jumlah, $dicabut, $dikabulkan, $ditolak, $tidak_diterima, $digugurkan, $dicoret_dari_register, $jumlah_lajur_6_sampai_11, $sisa_akhir, $banding, $kasasi, $pk, $ket);
+		if ($stmt->execute()) {
 			$berhasil++;
 		} else {
-			echo "Error inserting row $i: " . mysqli_error($koneksi) . "<br>";
+			// Debug: Tampilkan pesan kesalahan jika query gagal
+			echo "Error inserting row $i: " . $stmt->error . "<br>";
 		}
 	} else {
 		echo "Skipping empty row $i<br>";
@@ -75,6 +78,9 @@ for ($i = 2; $i <= $jumlah_baris; $i++) {
 // } else {
 // 	echo "The file $target_file is not writable and cannot be deleted.";
 // }
+
+$stmt->close();
+$koneksi->close();
 
 // alihkan halaman ke index.php
 header("Location: index.php?berhasil=$berhasil");
