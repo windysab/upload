@@ -49,12 +49,6 @@ CREATE TABLE `data_pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `data_pegawai`
---
-
-
-
---
 -- Indexes for dumped tables
 --
 
