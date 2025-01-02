@@ -64,6 +64,8 @@ for ($i = 2; $i <= $jumlah_baris; $i++) {
 		} else {
 			echo "Error inserting row $i: " . mysqli_error($koneksi) . "<br>";
 		}
+	} else {
+		echo "Skipping empty row $i<br>";
 	}
 }
 
