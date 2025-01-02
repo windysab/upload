@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Import Excel Ke MySQL dengan PHP - www.malasngoding.com</title>
+	<title>Import Excel to MySQL with PHP</title>
 </head>
 <body>
 	<style type="text/css">
@@ -13,10 +13,9 @@
 		color: green;
 	}
 </style>
-<h2>IMPORT EXCEL KE MYSQL DENGAN PHP</h2>
+<h2>IMPORT EXCEL TO MYSQL WITH PHP</h2>
 
-
-<a href="index.php">Kembali</a>
+<a href="index.php">Back</a>
 <br/><br/>
 <?php 
 include 'koneksi.php';
@@ -29,8 +28,6 @@ include 'koneksi.php';
 </form>
 
 <br/><br/>
-
-
 
 </body>
 </html>

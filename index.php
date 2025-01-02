@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pa Amuntai</title>
+	<title>Report</title>
 </head>
 <body>
 	<style type="text/css">
@@ -13,11 +13,11 @@
 			color: green;
 		}
 	</style> 
-	<h2>LAPORAN</h2>
+	<h2>REPORT</h2>
 	
 	<?php 
 	if(isset($_GET['berhasil'])){
-		echo "<p>".$_GET['berhasil']." Data berhasil di import.</p>";
+		echo "<p>".$_GET['berhasil']." Data successfully imported.</p>";
 	}
 	?>
 
