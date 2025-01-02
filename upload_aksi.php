@@ -70,11 +70,11 @@ for ($i = 2; $i <= $jumlah_baris; $i++) {
 }
 
 // hapus kembali file .xls yang di upload tadi
-if (is_writable($target_file)) {
-	unlink($target_file);
-} else {
-	echo "The file $target_file is not writable and cannot be deleted.";
-}
+// if (is_writable($target_file)) {
+// 	unlink($target_file);
+// } else {
+// 	echo "The file $target_file is not writable and cannot be deleted.";
+// }
 
 // alihkan halaman ke index.php
 header("Location: index.php?berhasil=$berhasil");
